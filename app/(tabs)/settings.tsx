@@ -1,9 +1,10 @@
 import { StyleSheet, View, Text } from "react-native";
 
-export default function TabOneScreen() {
+export default function TabSettingsScreen() {
   return (
     <View style={styles.container}>
-      <Text>Tab One</Text>
+      <Text style={styles.title}>Settings</Text>
+      <View style={styles.separator} />
     </View>
   );
 }
