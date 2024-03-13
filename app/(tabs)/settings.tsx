@@ -1,10 +1,13 @@
-import { StyleSheet, View, Text } from "react-native";
+import { useMocks } from "@/hooks/useMocks";
+import { StyleSheet, View, Text, Button } from "react-native";
 
 export default function TabSettingsScreen() {
+  const { createBookEntries } = useMocks();
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Settings</Text>
-      <View style={styles.separator} />
+      <Button title="Create book entries" onPress={createBookEntries} />
     </View>
   );
 }

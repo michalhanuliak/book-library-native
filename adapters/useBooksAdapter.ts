@@ -3,38 +3,26 @@ import {
   getBooksQueryKey,
   useGetBooksQuery,
 } from "@/infrastructure/queries/getBooksQuery";
+import { useGetBookQuery } from "@/infrastructure/queries/getBookQuery";
 import { useCreateBooksMutation } from "@/infrastructure/mutations/createBooksMutation";
 import { queryClient } from "@/infrastructure/queryClient";
-
-type Book = any;
+import { Book, BookCreateData } from "@/domain";
 
 export function useGetBooksAdapter() {
-  const { data, error, isLoading } = useGetBooksQuery();
-  return { data, error, isLoading };
+  const { data, error, isFetching, refetch } = useGetBooksQuery();
+
+  return { books: data ?? [], error, isFetching, refetch };
+}
+
+export function useGetBookAdapter(id: string) {
+  const { data, error, isFetching } = useGetBookQuery(id);
+  return { book: data, error, isFetching };
 }
 
 export function useCreateBooksAdapter() {
-  const queryKey = getBooksQueryKey();
+  const { mutate, error } = useCreateBooksMutation();
 
-  const { mutate, error } = useCreateBooksMutation({
-    onMutate: async (newBook: Book) => {
-      await queryClient.cancelQueries({ queryKey });
-
-      const previousTodos = queryClient.getQueryData(queryKey);
-
-      queryClient.setQueryData(queryKey, (old: Book[]) => [...old, newBook]);
-
-      return { previousTodos };
-    },
-    onError: (err, newTodo, context) => {
-      queryClient.setQueryData(queryKey, context.previousTodos);
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey });
-    },
-  });
-
-  const createBook = async (book: any) => {
+  const createBook = async (book: BookCreateData) => {
     mutate(book);
   };
 

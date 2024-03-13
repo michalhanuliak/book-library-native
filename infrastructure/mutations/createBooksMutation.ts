@@ -1,18 +1,25 @@
-import { useMutation } from "@tanstack/react-query";
+import {
+  useMutation,
+  UseMutationOptions,
+  UseMutationResult,
+} from "@tanstack/react-query";
 import { axiosInstance } from "../axiosInstace";
+import { Book, BookCreateData } from "@/domain";
 
 const url = "/books";
 
-export const createBooksApi = async (data: any) => {
-  return await axiosInstance(url, { method: "POST", data });
+export const createBooksApi = (data: BookCreateData): Promise<Book> => {
+  return axiosInstance(url, { method: "POST", data });
 };
 
 const createBooksMutationKey = [url];
 
-export const useCreateBooksMutation = (mutationConfig) => {
+export const useCreateBooksMutation = (
+  options?: UseMutationOptions<Book, Error, BookCreateData, Book[]>
+) => {
   return useMutation({
     mutationFn: createBooksApi,
     mutationKey: createBooksMutationKey,
-    ...mutationConfig,
+    ...options,
   });
 };

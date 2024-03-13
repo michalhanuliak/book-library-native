@@ -4,7 +4,7 @@ import { Tabs } from "expo-router";
 export default function TabLayout() {
   return (
     <Tabs>
-      <Tabs.Screen name="index" />
+      <Tabs.Screen name="index" options={{ title: "Books" }} />
       <Tabs.Screen name="settings" />
     </Tabs>
   );

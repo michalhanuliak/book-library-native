@@ -8,8 +8,7 @@ import { QueryClientProvider } from "@/infrastructure/QueryClientProvider";
 export { ErrorBoundary } from "expo-router";
 
 export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: "(tabs)",
+  initialRouteName: "Books",
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -21,7 +20,6 @@ export default function RootLayout() {
     ...FontAwesome.font,
   });
 
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
     if (error) throw error;
   }, [error]);
@@ -43,8 +41,15 @@ function RootLayoutNav() {
   return (
     <QueryClientProvider>
       <Stack>
+        <Stack.Screen name="apiSettings" />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+        <Stack.Screen
+          name="[id]"
+          options={{
+            headerShadowVisible: true,
+            headerTitle: "Book detail",
+          }}
+        />
       </Stack>
     </QueryClientProvider>
   );

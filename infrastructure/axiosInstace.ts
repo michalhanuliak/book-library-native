@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const crudHash = "4f79e778f13f4651a619d863806a20f8";
+const crudHash = "5adb681f7925499eacf2028ae60b7139";
 
 export const axiosInstance = axios.create({
   baseURL: `https://crudcrud.com/api/${crudHash}`,
