@@ -6,7 +6,13 @@ export type Book = {
   coverImageUrl: string;
   pageCount: number;
   rating: number;
-  releaseDate: string;
 };
 
 export type BookCreateData = Omit<Book, "_id">;
+
+export type BookEditData = Omit<Partial<Book>, "_id">;
+
+export type BookEditForm = Pick<Book, "title" | "author" | "description"> & {
+  pageCount: string;
+  rating: string;
+};

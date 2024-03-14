@@ -8,18 +8,18 @@ import { Book, BookCreateData } from "@/domain";
 
 const url = "/books";
 
-export const createBooksApi = (data: BookCreateData): Promise<Book> => {
+export const createBookApi = (data: BookCreateData): Promise<Book> => {
   return axiosInstance(url, { method: "POST", data });
 };
 
-const createBooksMutationKey = [url];
+const createBookMutationKey = [url];
 
-export const useCreateBooksMutation = (
+export const useCreateBookMutation = (
   options?: UseMutationOptions<Book, Error, BookCreateData, Book[]>
 ) => {
   return useMutation({
-    mutationFn: createBooksApi,
-    mutationKey: createBooksMutationKey,
+    mutationFn: createBookApi,
+    mutationKey: createBookMutationKey,
     ...options,
   });
 };

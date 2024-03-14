@@ -34,7 +34,7 @@ export function BooksList({
   const SIZE = (width - margin * column * 2) / column;
 
   const handleNavigate = (id: string) => {
-    router.push(`/${id}`);
+    router.push({ pathname: `/detail`, params: { id } });
   };
 
   const filteredBooks = books.filter((book) =>

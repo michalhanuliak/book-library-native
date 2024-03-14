@@ -1,9 +1,10 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { Stack, useGlobalSearchParams, useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useEffect } from "react";
 import { QueryClientProvider } from "@/infrastructure/QueryClientProvider";
+import { loadStorage } from "@/utils/storage";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -38,16 +39,64 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
+  const router = useRouter();
+  const param = useGlobalSearchParams();
+  const id = param.id as string;
+
+  useEffect(() => {
+    const syncStorage = async () => {
+      const crudHash = await loadStorage("crudHash");
+      if (!crudHash) {
+        router.push("/hashSetup");
+      }
+    };
+    syncStorage();
+  });
+
   return (
     <QueryClientProvider>
       <Stack>
-        <Stack.Screen name="apiSettings" />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="hashSetup" options={{ headerBackVisible: false }} />
         <Stack.Screen
-          name="[id]"
+          name="detail"
           options={{
             headerShadowVisible: true,
             headerTitle: "Book detail",
+            headerRight: () => {
+              return (
+                <FontAwesome.Button
+                  name="pencil"
+                  backgroundColor="transparent"
+                  color="black"
+                  onPress={() => {
+                    router.push({
+                      pathname: "/edit",
+                      params: { id: id },
+                    });
+                  }}
+                />
+              );
+            },
+          }}
+        />
+        <Stack.Screen
+          name="edit"
+          options={{
+            headerShadowVisible: true,
+            headerTitle: "Book edit",
+            headerRight: () => {
+              return (
+                <FontAwesome.Button
+                  name="trash"
+                  backgroundColor="transparent"
+                  color="black"
+                  onPress={() => {
+                    router.push("/:id/edit");
+                  }}
+                />
+              );
+            },
           }}
         />
       </Stack>

@@ -7,15 +7,7 @@ export type BookDetailProps = {
 };
 
 export function BookDetail({ book }: BookDetailProps) {
-  const {
-    title,
-    author,
-    description,
-    pageCount,
-    rating,
-    releaseDate,
-    coverImageUrl,
-  } = book;
+  const { title, author, description, pageCount, rating, coverImageUrl } = book;
 
   return (
     <View style={styles.container}>
@@ -32,7 +24,6 @@ export function BookDetail({ book }: BookDetailProps) {
         <Text style={styles.description}>{description}</Text>
         <Parameters label="Page Count" value={pageCount} />
         <Parameters label="Rating" value={rating} />
-        <Parameters label="Release Date" value={releaseDate} />
       </View>
     </View>
   );
@@ -70,9 +61,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   rating: {
-    fontSize: 16,
-  },
-  releaseDate: {
     fontSize: 16,
   },
 });

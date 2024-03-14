@@ -1,5 +1,6 @@
 import { Feather, Entypo } from "@expo/vector-icons";
-import { StyleSheet, TextInput, View, ViewStyle } from "react-native";
+import { StyleSheet, View, ViewStyle } from "react-native";
+import { TextInput } from "./TextInput";
 
 export type SearchBarProps = {
   clicked: boolean;
@@ -26,7 +27,6 @@ export const SearchBar = ({
           style={{ marginLeft: 1 }}
         />
         <TextInput
-          style={styles.input}
           placeholder="Search"
           value={searchPhrase}
           onChangeText={setSearchPhrase}
@@ -69,11 +69,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#d9dbda",
     borderRadius: 15,
     alignItems: "center",
-  },
-  input: {
-    fontSize: 20,
-    paddingRight: 20,
-    paddingLeft: 10,
-    width: "100%",
   },
 });

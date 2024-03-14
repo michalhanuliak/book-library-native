@@ -1,13 +1,12 @@
-import { useMocks } from "@/hooks/useMocks";
-import { StyleSheet, View, Text, Button } from "react-native";
+import { CreateEntriesForm } from "@/components/layouts/CreateEntriesForm";
+import { CrudHashForm } from "@/components/layouts/CrudHashForm";
+import { StyleSheet, View } from "react-native";
 
 export default function TabSettingsScreen() {
-  const { createBookEntries } = useMocks();
-
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Settings</Text>
-      <Button title="Create book entries" onPress={createBookEntries} />
+      <CreateEntriesForm />
+      <CrudHashForm />
     </View>
   );
 }
@@ -15,8 +14,6 @@ export default function TabSettingsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
   },
   title: {
     fontSize: 20,

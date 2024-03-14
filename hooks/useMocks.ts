@@ -1,15 +1,14 @@
-import { useCreateBooksAdapter } from "@/adapters/useBooksAdapter";
+import { useCreateBookAdapter } from "@/adapters/useBooksAdapter";
 import { getBooksQueryKey } from "@/infrastructure/queries/getBooksQuery";
 import { queryClient } from "@/infrastructure/queryClient";
 import { generateBookMocks } from "@/utils/mocks";
 
-const queryKey = getBooksQueryKey();
-const books = generateBookMocks();
-
 export function useMocks() {
-  const { createBook } = useCreateBooksAdapter();
+  const { createBook } = useCreateBookAdapter();
 
-  const createBookEntries = () => {
+  const createBookEntries = (entriesCount: number) => {
+    const queryKey = getBooksQueryKey();
+    const books = generateBookMocks(entriesCount);
     books.forEach((book) => createBook(book));
     const invalidateBooksQuery = queryClient.invalidateQueries({ queryKey });
   };

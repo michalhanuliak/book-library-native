@@ -8,11 +8,11 @@ export const getBookApi = (id: string): Promise<Book> => {
   return axiosInstance(url(id));
 };
 
-export const getBookQueryKey = () => [url];
+export const getBookQueryKey = (id: string) => [url(id)];
 
 export const useGetBookQuery = (id: string) => {
   return useQuery<Book>({
-    queryKey: getBookQueryKey(),
+    queryKey: getBookQueryKey(id),
     queryFn: () => getBookApi(id),
   });
 };
