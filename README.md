@@ -7,11 +7,17 @@ The goal of this project is to create a simple mobile application for managing a
 ## Features
 
 - **Splash Screen:** A splash screen is displayed upon launching the application.
+  ![screenshot](./assets/screenshots/SplashScreen.png)
 - **CrudHash Configuration:** Users are prompted to input a CrudCrud endpoint URL at the first launch. The app remembers this endpoint and allows its modification.
+  ![screenshot](./assets/screenshots/CrudHashSettingsScreen.png)
 - **Main Screen:** Displays a list of all books in the database.
+  ![screenshot](./assets/screenshots/BookListScreen.png)
 - **Book Details:** Users can view details of a book
+  ![screenshot](./assets/screenshots/BookDetailScreen.png)
 - **Book Edit:** Users can edit or delete the book.
+  ![screenshot](./assets/screenshots/BookEditScreen.png)
 - **Settings screen:** Users can generate new books and change hash
+  ![screenshot](./assets/screenshots/BookSettingsScreen.png)
 - **Data Loading Optimization:** Implements efficient data loading and caching strategies to minimize API request counts via React Query.
 
 ## API
@@ -22,17 +28,6 @@ This application uses the [CrudCrud](https://crudcrud.com/) service for data man
 
 - The UI is designed to be modern and intuitive, inspired by modern design principles.
 - Developed using React Native and TypeScript, incorporating reusable components and responsive design to adapt to various device sizes.
-
-## Screenshots
-
-Here are some screenshots of the application in action:
-
-- Splash Screen: ![screenshot](./assets/screenshots/SplashScreen.png)
-- Book list screen: ![screenshot](./assets/screenshots/BookListScreen.png)
-- Book detail screen: ![screenshot](./assets/screenshots/BookDetailScreen.png)
-- Book edit screen: ![screenshot](./assets/screenshots/BookEditScreen.png)
-- Book settings screen: ![screenshot](./assets/screenshots/BookSettingsScreen.png)
-- Hash setting screen: ![screenshot](./assets/screenshots/CrudHashSettingsScreen.png)
 
 ## Setup and Running
 
