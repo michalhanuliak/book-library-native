@@ -1,4 +1,3 @@
-import { useQueryClient } from "@tanstack/react-query";
 import {
   getBooksQueryKey,
   useGetBooksQuery,
@@ -15,17 +14,20 @@ import { useRemoveBookMutation } from "@/infrastructure/mutations/removeBookMuta
 import { Alert } from "react-native";
 
 export function useGetBooksAdapter() {
+  // TODO: Add error handling
   const { data, error, isFetching, refetch } = useGetBooksQuery();
 
   return { books: data ?? [], error, isFetching, refetch };
 }
 
 export function useGetBookAdapter(id: string) {
+  // TODO: Add error handling
   const { data, error, isFetching } = useGetBookQuery(id);
   return { book: data, error, isFetching };
 }
 
 export function useCreateBookAdapter() {
+  // TODO: Add error handling
   const { mutate, error, isPending } = useCreateBookMutation();
 
   const createBook = async (book: BookCreateData) => {
@@ -60,6 +62,7 @@ export function useEditBookAdapter(id: string) {
     },
     onError: (err, editedBook, context) => {
       queryClient.setQueryData(queryKey, context);
+      Alert.alert("Book edit failed");
     },
     onSuccess: () => {
       Alert.alert("Book edited successfully!");
@@ -97,6 +100,7 @@ export function useRemoveBookAdapter(id: string) {
       return previousBooks;
     },
     onError: (err, removedBook, context) => {
+      Alert.alert("Book removal failed");
       queryClient.setQueryData(queryKey, context);
     },
     onSuccess: () => {

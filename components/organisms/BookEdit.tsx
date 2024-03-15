@@ -1,5 +1,5 @@
-import { Book, BookCreateData, BookEditForm } from "@/domain";
-import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
+import { Book, BookEditForm } from "@/domain";
+import { View, StyleSheet, ScrollView } from "react-native";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ControlledTextInput } from "../molecules/ControlledTextInput";

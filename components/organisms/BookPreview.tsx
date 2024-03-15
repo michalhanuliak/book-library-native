@@ -1,8 +1,6 @@
 import { Book } from "@/domain";
 import { Text } from "@/components/atoms/Text";
 import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
-import Colors from "@/constants/Colors";
 import { Rating } from "../molecules/Rating";
 
 export type BookPreviewProps = Pick<

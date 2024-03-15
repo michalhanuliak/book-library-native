@@ -1,17 +1,9 @@
 import { StatusBar } from "expo-status-bar";
-import {
-  Platform,
-  StyleSheet,
-  View,
-  Text,
-  ActivityIndicator,
-} from "react-native";
-import { useRouter, useGlobalSearchParams } from "expo-router";
+import { StyleSheet, View, ActivityIndicator } from "react-native";
+import { Text } from "@/components/atoms/Text";
+import { useGlobalSearchParams } from "expo-router";
 import { BookDetail } from "@/components/organisms/BookDetail";
-import {
-  useGetBookAdapter,
-  useGetBooksAdapter,
-} from "@/adapters/useBooksAdapter";
+import { useGetBooksAdapter } from "@/adapters/useBooksAdapter";
 import Layout from "@/constants/Layout";
 
 export default function BookDetailPage() {

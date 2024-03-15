@@ -5,7 +5,6 @@ import {
   View,
   Dimensions,
   RefreshControl,
-  ListRenderItem,
   ListRenderItemInfo,
 } from "react-native";
 import { BookPreview } from "../organisms/BookPreview";

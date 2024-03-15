@@ -1,7 +1,7 @@
 import { useGetBooksAdapter } from "@/adapters/useBooksAdapter";
 import { BooksList } from "@/components/layouts/BooksList";
 import Layout from "@/constants/Layout";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 export default function TabOneScreen() {
   const { books, refetch, isFetching } = useGetBooksAdapter();

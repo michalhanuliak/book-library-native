@@ -1,5 +1,4 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, Text, ActivityIndicator } from "react-native";
+import { StyleSheet, View, ActivityIndicator } from "react-native";
 import { useGlobalSearchParams, router } from "expo-router";
 import {
   useEditBookAdapter,
@@ -8,6 +7,7 @@ import {
 import { BookEdit } from "@/components/organisms/BookEdit";
 import { BookEditForm } from "@/domain";
 import Layout from "@/constants/Layout";
+import { Text } from "@/components/atoms/Text";
 
 export default function BookEditPage() {
   const param = useGlobalSearchParams();

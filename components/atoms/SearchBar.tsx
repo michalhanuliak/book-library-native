@@ -1,5 +1,5 @@
 import { Feather, Entypo } from "@expo/vector-icons";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { TextInput } from "./TextInput";
 import Colors from "@/constants/Colors";
 
