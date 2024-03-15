@@ -32,7 +32,7 @@ Here are some screenshots of the application in action:
 - Book detail screen: ![screenshot](./assets/screenshots/BookDetailScreen.png)
 - Book edit screen: ![screenshot](./assets/screenshots/BookEditScreen.png)
 - Book settings screen: ![screenshot](./assets/screenshots/BookSettingsScreen.png)
-- Hash setting screen: ![screenshot](./assets/screenshots/CrudHashSettings.png)
+- Hash setting screen: ![screenshot](./assets/screenshots/CrudHashSettingsScreen.png)
 
 ## Setup and Running
 
