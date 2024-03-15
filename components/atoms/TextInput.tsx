@@ -7,6 +7,7 @@ import {
   Text,
   View,
 } from "react-native";
+import { DismissKeyboard } from "./DismissKeyboard";
 
 export type TextInputProps = Omit<NativeTextInputProps, "style"> & {
   label?: string;
@@ -21,11 +22,13 @@ export function TextInput({
   ...props
 }: TextInputProps) {
   return (
-    <View style={{ ...styles.container, ...style }}>
-      {label && <Text style={styles.label}>{label}</Text>}
-      <NativeTextInput style={styles.input} {...props} />
-      {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
-    </View>
+    <DismissKeyboard>
+      <View style={{ ...styles.container, ...style }}>
+        {label && <Text style={styles.label}>{label}</Text>}
+        <NativeTextInput style={styles.input} {...props} />
+        {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
+      </View>
+    </DismissKeyboard>
   );
 }
 

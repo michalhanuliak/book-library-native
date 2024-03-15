@@ -5,6 +5,8 @@ import { router } from "expo-router";
 const REQUEST_MAXIMUM_REACHED_ERROR_MESSAGE =
   "Endpoint has exceeded allowed number of requests";
 
+const REQUEST_INVALID_HASH = "Endpoint doesn't exist.";
+
 const controller = new AbortController();
 
 export const axiosInstance = axios.create({
@@ -26,9 +28,15 @@ function handleRequestMaximumReached(error: AxiosError<string>) {
   const isRequestMaximumReachedError = error?.response?.data?.includes(
     REQUEST_MAXIMUM_REACHED_ERROR_MESSAGE
   );
-  if (isRequestMaximumReachedError) {
-    router.push("/hashSetup");
-    controller.abort();
+
+  const isInvalidHashError =
+    error?.response?.data?.includes(REQUEST_INVALID_HASH);
+
+  if (isRequestMaximumReachedError || isInvalidHashError) {
+    router.push({
+      pathname: "/hashSetup",
+      params: { errorMessage: error?.response?.data ?? "" },
+    });
   }
   return Promise.reject(error);
 }

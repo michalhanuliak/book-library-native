@@ -1,4 +1,5 @@
 import Colors from "@/constants/Colors";
+import { range } from "@/utils/helpers";
 import { FontAwesome } from "@expo/vector-icons";
 import { View, StyleSheet } from "react-native";
 
@@ -9,14 +10,18 @@ export type RatingProps = {
 };
 
 export function Rating({ rating }: RatingProps) {
-  const renderedFullStars = [...Array(TOTAL_STARS).keys()].map((index) => {
+  const renderedFullStars = range(1, TOTAL_STARS).map((index) => {
+    const isFilled = index <= rating;
+
     return (
-      <FontAwesome
-        key={index}
-        name={index < rating ? "star" : "star-o"}
-        size={18}
-        color={Colors.gold}
-      />
+      <View key={index} testID={isFilled ? "filled-star" : "empty-star"}>
+        <FontAwesome
+          key={index}
+          name={isFilled ? "star" : "star-o"}
+          size={18}
+          color={Colors.gold}
+        />
+      </View>
     );
   });
 

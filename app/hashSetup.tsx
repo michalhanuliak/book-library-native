@@ -1,20 +1,29 @@
-import { Button } from "@/components/atoms/Button";
 import { Text } from "@/components/atoms/Text";
 import { CrudHashForm } from "@/components/layouts/CrudHashForm";
-import { Link } from "expo-router";
-import { Linking, View } from "react-native";
+import Layout from "@/constants/Layout";
+import { Linking, StyleSheet, View } from "react-native";
 
 export default function HashSetupScreen() {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>
         Copy hash from{" "}
-        <Button
-          title="Crud Crud"
+        <Text
+          weight="bold"
+          color="secondary"
           onPress={() => Linking.openURL("https://crudcrud.com")}
-        />
+        >
+          Crud Crud
+        </Text>
       </Text>
-      <CrudHashForm />
+      <CrudHashForm redirectTo="/" />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    gap: 10,
+    padding: Layout.containerPadding,
+  },
+});

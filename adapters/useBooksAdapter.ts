@@ -11,6 +11,8 @@ import { useCreateBookMutation } from "@/infrastructure/mutations/createBookMuta
 import { queryClient } from "@/infrastructure/queryClient";
 import { Book, BookCreateData, BookEditData } from "@/domain";
 import { useEditBookMutation } from "@/infrastructure/mutations/editBooksMutation";
+import { useRemoveBookMutation } from "@/infrastructure/mutations/removeBookMutation";
+import { Alert } from "react-native";
 
 export function useGetBooksAdapter() {
   const { data, error, isFetching, refetch } = useGetBooksQuery();
@@ -56,8 +58,11 @@ export function useEditBookAdapter(id: string) {
 
       return previousBooks;
     },
-    onError: (err, newBook, context) => {
+    onError: (err, editedBook, context) => {
       queryClient.setQueryData(queryKey, context);
+    },
+    onSuccess: () => {
+      Alert.alert("Book edited successfully!");
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey });
@@ -70,4 +75,42 @@ export function useEditBookAdapter(id: string) {
   };
 
   return { editBook, error };
+}
+
+export function useRemoveBookAdapter(id: string) {
+  const queryKey = getBooksQueryKey();
+
+  const { mutate, error } = useRemoveBookMutation(id, {
+    onMutate: async (removedBook) => {
+      await queryClient.cancelQueries({ queryKey });
+
+      let previousBooks = queryClient.getQueryData<Book[]>(queryKey);
+
+      if (!previousBooks) {
+        return [];
+      }
+
+      previousBooks = previousBooks.filter((book) => book._id !== id);
+
+      queryClient.setQueryData(queryKey, () => previousBooks);
+
+      return previousBooks;
+    },
+    onError: (err, removedBook, context) => {
+      queryClient.setQueryData(queryKey, context);
+    },
+    onSuccess: () => {
+      Alert.alert("Book removed successfully!");
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey });
+      queryClient.invalidateQueries({ queryKey: getBookQueryKey(id) });
+    },
+  });
+
+  const removeBook = async () => {
+    mutate();
+  };
+
+  return { removeBook, error };
 }

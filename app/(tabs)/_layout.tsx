@@ -11,6 +11,7 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "Book library",
+          unmountOnBlur: true,
           tabBarLabel: () => null,
           tabBarIcon: ({ focused }) => {
             return (

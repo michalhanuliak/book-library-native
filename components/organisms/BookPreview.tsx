@@ -52,9 +52,9 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     shadowColor: "#000",
-    shadowOffset: { width: 4, height: 2 },
+    shadowOffset: { width: -2, height: 2 },
     shadowOpacity: 0.3,
-    shadowRadius: 6,
+    shadowRadius: 3,
   },
   title: {
     fontSize: 16,

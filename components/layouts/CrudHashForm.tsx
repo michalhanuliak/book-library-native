@@ -1,13 +1,21 @@
-import { StyleSheet, View } from "react-native";
+import { Alert, StyleSheet, View } from "react-native";
 import { TextInput } from "../atoms/TextInput";
 import { Button } from "../atoms/Button";
 import { Text } from "../atoms/Text";
 import { useEffect, useState } from "react";
 import { loadStorage, saveToStorage } from "@/utils/storage";
+import { Href, router, useLocalSearchParams } from "expo-router";
+import { useQueryClient } from "@tanstack/react-query";
 
-export type CrudHashFormProps = {};
+export type CrudHashFormProps = {
+  redirectTo?: Href<string>;
+};
 
-export function CrudHashForm(props: CrudHashFormProps) {
+export function CrudHashForm({ redirectTo }: CrudHashFormProps) {
+  const queryClient = useQueryClient();
+  const params = useLocalSearchParams();
+  const error = params["errorMessage"];
+
   const [input, setInput] = useState("");
 
   const handleInputChange = (text: string) => {
@@ -15,7 +23,13 @@ export function CrudHashForm(props: CrudHashFormProps) {
   };
 
   const handleSaveToStorage = () => {
-    saveToStorage("crudHash", input);
+    saveToStorage("crudHash", input).then(() => {
+      queryClient.invalidateQueries({ queryKey: ["/books"] });
+      Alert.alert("Hash saved successfully!");
+      if (redirectTo) {
+        router.push(redirectTo);
+      }
+    });
   };
 
   useEffect(() => {
@@ -37,6 +51,7 @@ export function CrudHashForm(props: CrudHashFormProps) {
         value={input}
         style={style.input}
       />
+      {error && <Text color="danger">Error: {error}</Text>}
       <Button title="Save" onPress={handleSaveToStorage} />
     </View>
   );

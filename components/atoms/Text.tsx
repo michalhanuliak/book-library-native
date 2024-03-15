@@ -8,7 +8,7 @@ import {
 
 export type TextProps = Omit<NativeTextProps, "style"> & {
   style?: TextStyle;
-  color?: "primary" | "secondary" | "gray";
+  color?: "primary" | "secondary" | "gray" | "danger";
   weight?: "bold" | "normal";
 };
 
@@ -25,6 +25,7 @@ export function Text({
         ...(color === "primary" && styles.colorPrimary),
         ...(color === "secondary" && styles.colorSecondary),
         ...(color === "gray" && styles.colorGray),
+        ...(color === "danger" && styles.colorDanger),
         ...(weight === "bold" ? styles.bold : styles.normal),
         ...style,
       }}
@@ -45,6 +46,9 @@ const styles = StyleSheet.create({
   },
   colorGray: {
     color: Colors.gray,
+  },
+  colorDanger: {
+    color: Colors.danger,
   },
   bold: {
     fontWeight: "bold",

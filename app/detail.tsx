@@ -12,6 +12,7 @@ import {
   useGetBookAdapter,
   useGetBooksAdapter,
 } from "@/adapters/useBooksAdapter";
+import Layout from "@/constants/Layout";
 
 export default function BookDetailPage() {
   const param = useGlobalSearchParams();
@@ -50,7 +51,7 @@ export default function BookDetailPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 8,
+    padding: Layout.containerPadding,
   },
   title: {
     fontSize: 20,

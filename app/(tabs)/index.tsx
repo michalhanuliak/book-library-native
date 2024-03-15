@@ -1,5 +1,6 @@
 import { useGetBooksAdapter } from "@/adapters/useBooksAdapter";
 import { BooksList } from "@/components/layouts/BooksList";
+import Layout from "@/constants/Layout";
 import { StyleSheet, View, Text } from "react-native";
 
 export default function TabOneScreen() {
@@ -15,7 +16,6 @@ export default function TabOneScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    padding: Layout.containerPadding,
   },
 });

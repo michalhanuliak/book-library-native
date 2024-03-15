@@ -9,7 +9,7 @@ export const generateBookMocks = (entriesCount: number): BookCreateData[] => {
       title: faker.lorem.sentence(5).replace(/\.$/, ""), // Remove the trailing period
       author: faker.person.fullName(),
       description: faker.lorem.paragraph(),
-      coverImageUrl: faker.image.url(),
+      coverImageUrl: faker.image.url({ width: 200, height: 250 }),
       pageCount: faker.number.int({ min: 100, max: 1000 }),
       rating: parseFloat(faker.number.int({ min: 1, max: 5 }).toFixed(1)),
     };

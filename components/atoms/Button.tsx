@@ -19,6 +19,7 @@ export function Button({
 }: ButtonProps) {
   return (
     <TouchableOpacity
+      data-testid="button"
       activeOpacity={0.8}
       onPress={onPress}
       style={{
@@ -27,9 +28,11 @@ export function Button({
         ...((disabled || isLoading) && styles.buttonDisabled),
       }}
       disabled={disabled || isLoading}
+      accessibilityState={{ disabled: disabled || isLoading }}
+      testID="button"
     >
       <Text style={styles.buttonText}>{title}</Text>
-      {isLoading && <ActivityIndicator />}
+      {isLoading && <ActivityIndicator testID="loading-indicator" />}
     </TouchableOpacity>
   );
 }

@@ -12,6 +12,8 @@ export type BookCreateData = Omit<Book, "_id">;
 
 export type BookEditData = Omit<Partial<Book>, "_id">;
 
+export type BookRemoveData = Pick<Book, "_id">;
+
 export type BookEditForm = Pick<Book, "title" | "author" | "description"> & {
   pageCount: string;
   rating: string;

@@ -7,6 +7,7 @@ import {
 } from "@/adapters/useBooksAdapter";
 import { BookEdit } from "@/components/organisms/BookEdit";
 import { BookEditForm } from "@/domain";
+import Layout from "@/constants/Layout";
 
 export default function BookEditPage() {
   const param = useGlobalSearchParams();
@@ -50,7 +51,7 @@ export default function BookEditPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 16,
+    padding: Layout.containerPadding,
   },
   title: {
     fontSize: 20,

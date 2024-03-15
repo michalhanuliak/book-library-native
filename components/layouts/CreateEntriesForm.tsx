@@ -3,9 +3,7 @@ import { Button } from "../atoms/Button";
 import { useMocks } from "@/hooks/useMocks";
 import { Text } from "../atoms/Text";
 
-export type CreateEntriesFormProps = {};
-
-export function CreateEntriesForm(props: CreateEntriesFormProps) {
+export function CreateEntriesForm() {
   const { createBookEntries, isPending } = useMocks();
 
   return (

@@ -6,6 +6,8 @@ import React, { useEffect } from "react";
 import { QueryClientProvider } from "@/infrastructure/QueryClientProvider";
 import { loadStorage } from "@/utils/storage";
 import { StatusBar } from "expo-status-bar";
+import { RemoveBookIcon } from "@/components/molecules/RemoveBookIcon";
+import Colors from "@/constants/Colors";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -52,7 +54,7 @@ function RootLayoutNav() {
       }
     };
     syncStorage();
-  });
+  }, []);
 
   return (
     <QueryClientProvider>
@@ -64,19 +66,25 @@ function RootLayoutNav() {
           },
         }}
       >
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="hashSetup" options={{ headerBackVisible: false }} />
+        <Stack.Screen
+          name="(tabs)"
+          options={{ headerShown: false, title: "Book library" }}
+        />
+        <Stack.Screen
+          name="hashSetup"
+          options={{ title: "CRUD CRUD HASH", headerBackVisible: false }}
+        />
         <Stack.Screen
           name="detail"
           options={{
-            headerShadowVisible: true,
             headerTitle: "Book detail",
             headerRight: () => {
               return (
                 <FontAwesome.Button
-                  name="pencil"
+                  name="pencil-square-o"
                   backgroundColor="transparent"
-                  color="black"
+                  underlayColor="transparent"
+                  color={Colors.primary}
                   onPress={() => {
                     router.push({
                       pathname: "/edit",
@@ -93,18 +101,7 @@ function RootLayoutNav() {
           options={{
             headerShadowVisible: true,
             headerTitle: "Book edit",
-            headerRight: () => {
-              return (
-                <FontAwesome.Button
-                  name="trash"
-                  backgroundColor="transparent"
-                  color="black"
-                  onPress={() => {
-                    router.push("/:id/edit");
-                  }}
-                />
-              );
-            },
+            headerRight: RemoveBookIcon,
           }}
         />
       </Stack>
