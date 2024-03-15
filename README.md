@@ -42,6 +42,10 @@ Here are some screenshots of the application in action:
 git clone https://github.com/michalhanuliak/book-library-native
 ```
 
+```
+cd book-library-native
+```
+
 Install dependencies:
 
 ```
