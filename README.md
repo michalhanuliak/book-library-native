@@ -32,7 +32,6 @@ Here are some screenshots of the application in action:
 ![screenshot](./assets/screenshots/BookDetailScreen.png)
 ![screenshot](./assets/screenshots/BookEditScreen.png)
 ![screenshot](./assets/screenshots/BookSettingsScreen.png)
-![screenshot](./assets/screenshots/CrudHashSettingsScreen.png)
 
 ## Setup and Running
 
