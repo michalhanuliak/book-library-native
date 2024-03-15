@@ -1,6 +1,8 @@
 import { Book } from "@/domain";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Image, StyleSheet } from "react-native";
 import { Parameters } from "../atoms/Parameters";
+import { Text } from "../atoms/Text";
+import { Rating } from "../molecules/Rating";
 
 export type BookDetailProps = {
   book: Book;
@@ -11,56 +13,64 @@ export function BookDetail({ book }: BookDetailProps) {
 
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.image}
-        source={{ uri: coverImageUrl }}
-        height={200}
-      />
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.author}>{author}</Text>
+      <View style={styles.mainInfoContainer}>
+        <View style={styles.mainInfo}>
+          <Image
+            style={styles.image}
+            source={{ uri: coverImageUrl }}
+            height={250}
+          />
+        </View>
+
+        <View style={styles.additionalInfo}>
+          <Text style={styles.title} weight="bold">
+            {title}
+          </Text>
+          <Text color="secondary" weight="bold">
+            by {author}
+          </Text>
+          <Rating rating={rating} />
+        </View>
+      </View>
 
       <View style={styles.aboutContainer}>
         <Text style={styles.aboutTitle}>About</Text>
-        <Text style={styles.description}>{description}</Text>
-        <Parameters label="Page Count" value={pageCount} />
-        <Parameters label="Rating" value={rating} />
+        <Text color="gray">{description}</Text>
       </View>
+
+      <Parameters label="Page Count" value={pageCount} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 16,
+    padding: 8,
+    gap: 16,
+  },
+  mainInfoContainer: {
     gap: 12,
+    flexDirection: "row",
+  },
+  mainInfo: {
+    flex: 1,
+  },
+  additionalInfo: {
+    flex: 1,
+    gap: 8,
   },
   image: {
     borderRadius: 16,
   },
   title: {
-    fontSize: 24,
-    fontWeight: "bold",
-  },
-  author: {
-    fontSize: 16,
-    color: "gray",
+    fontSize: 22,
   },
   aboutContainer: {
-    gap: 12,
+    gap: 8,
     justifyContent: "flex-start",
   },
   aboutTitle: {
     fontSize: 20,
     fontWeight: "bold",
-  },
-  description: {
-    fontSize: 16,
-  },
-  pageCount: {
-    fontSize: 16,
-  },
-  rating: {
-    fontSize: 16,
   },
 });

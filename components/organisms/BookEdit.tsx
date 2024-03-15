@@ -1,5 +1,5 @@
 import { Book, BookCreateData, BookEditForm } from "@/domain";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ControlledTextInput } from "../molecules/ControlledTextInput";
@@ -23,23 +23,37 @@ export function BookEdit({ book, onSubmit }: BookEditProps) {
   });
 
   return (
-    <View style={styles.container}>
-      <ControlledTextInput label="Title" name="title" control={control} />
-      <ControlledTextInput label="Author" name="author" control={control} />
-      <ControlledTextInput
-        label="Description"
-        name="description"
-        control={control}
-      />
-      <ControlledTextInput
-        label="Page count"
-        name="pageCount"
-        control={control}
-      />
-      <ControlledTextInput label="Rating" name="rating" control={control} />
+    <ScrollView automaticallyAdjustKeyboardInsets={true}>
+      <View style={styles.container}>
+        <ControlledTextInput
+          label="Title"
+          name="title"
+          control={control}
+          multiline
+        />
+        <ControlledTextInput label="Author" name="author" control={control} />
+        <ControlledTextInput
+          label="Description"
+          name="description"
+          control={control}
+          multiline
+        />
+        <ControlledTextInput
+          label="Page count"
+          name="pageCount"
+          control={control}
+          keyboardType="numeric"
+        />
+        <ControlledTextInput
+          label="Rating"
+          name="rating"
+          control={control}
+          keyboardType="numeric"
+        />
 
-      <Button title="Submit" onPress={handleSubmit(onSubmit)} />
-    </View>
+        <Button title="Submit" onPress={handleSubmit(onSubmit)} />
+      </View>
+    </ScrollView>
   );
 }
 

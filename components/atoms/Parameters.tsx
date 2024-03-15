@@ -1,4 +1,5 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
+import { Text } from "@/components/atoms/Text";
 
 export type ParametersProps = {
   label: string;
@@ -8,8 +9,12 @@ export type ParametersProps = {
 export function Parameters({ label, value }: ParametersProps) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{label}</Text>
-      <Text style={styles.value}>{value}</Text>
+      <Text style={styles.title} weight="bold">
+        {label}
+      </Text>
+      <Text style={styles.value} color="secondary">
+        {value}
+      </Text>
     </View>
   );
 }
@@ -21,7 +26,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontWeight: "bold",
   },
   value: {
     fontSize: 20,

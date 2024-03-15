@@ -1,5 +1,9 @@
 import { Book } from "@/domain";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { Text } from "@/components/atoms/Text";
+import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
+import Colors from "@/constants/Colors";
+import { Rating } from "../molecules/Rating";
 
 export type BookPreviewProps = Pick<
   Book,
@@ -26,21 +30,25 @@ export function BookPreview({
           style={styles.image}
         />
       </View>
-      <Text style={styles.title}>{title}</Text>
-      <View>
-        <Text style={styles.author}>{author}</Text>
-        <Text>{rating}</Text>
-      </View>
+
+      <Text style={styles.title} weight="bold">
+        {title}
+      </Text>
+
+      <Text color="secondary" weight="bold">
+        by {author}
+      </Text>
+      <Rating rating={rating} />
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    gap: 6,
+    gap: 8,
   },
   image: {
-    borderRadius: 8,
+    borderRadius: 6,
   },
   imageContainer: {
     shadowColor: "#000",
@@ -50,10 +58,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontWeight: "bold",
-  },
-  author: {
-    fontSize: 13,
-    color: "gray",
+    lineHeight: 22,
   },
 });

@@ -1,19 +1,12 @@
 import { StatusBar } from "expo-status-bar";
-import {
-  Platform,
-  StyleSheet,
-  View,
-  Text,
-  ActivityIndicator,
-} from "react-native";
-import { useRouter, useGlobalSearchParams } from "expo-router";
-import { BookDetail } from "@/components/organisms/BookDetail";
+import { StyleSheet, View, Text, ActivityIndicator } from "react-native";
+import { useGlobalSearchParams, router } from "expo-router";
 import {
   useEditBookAdapter,
   useGetBookAdapter,
 } from "@/adapters/useBooksAdapter";
 import { BookEdit } from "@/components/organisms/BookEdit";
-import { BookCreateData } from "@/domain";
+import { BookEditForm } from "@/domain";
 
 export default function BookEditPage() {
   const param = useGlobalSearchParams();
@@ -22,8 +15,13 @@ export default function BookEditPage() {
   const { editBook } = useEditBookAdapter(id);
   const { book, isFetching } = useGetBookAdapter(id);
 
-  const handleBookEdit = async (book: BookCreateData) => {
-    await editBook(book);
+  const handleBookEdit = async (book: BookEditForm) => {
+    await editBook({
+      ...book,
+      pageCount: parseInt(book.pageCount),
+      rating: parseInt(book.rating),
+    });
+    router.navigate({ pathname: `/detail`, params: { id } });
   };
 
   if (isFetching) {
@@ -52,6 +50,7 @@ export default function BookEditPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    margin: 16,
   },
   title: {
     fontSize: 20,

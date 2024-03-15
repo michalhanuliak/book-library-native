@@ -44,7 +44,7 @@ export function CrudHashForm(props: CrudHashFormProps) {
 
 const style = StyleSheet.create({
   container: {
-    padding: 20,
+    gap: 10,
   },
   input: {
     backgroundColor: "#fff",

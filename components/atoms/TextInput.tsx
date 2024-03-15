@@ -1,3 +1,4 @@
+import Colors from "@/constants/Colors";
 import {
   TextInput as NativeTextInput,
   TextInputProps as NativeTextInputProps,
@@ -20,22 +21,28 @@ export function TextInput({
   ...props
 }: TextInputProps) {
   return (
-    <View style={styles.container}>
+    <View style={{ ...styles.container, ...style }}>
       {label && <Text style={styles.label}>{label}</Text>}
-      <NativeTextInput style={{ ...styles.input, ...style }} {...props} />
-      {errorMessage && <Text>{errorMessage}</Text>}
+      <NativeTextInput style={styles.input} {...props} />
+      {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingRight: 20,
-    paddingLeft: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
     width: "100%",
+    borderColor: Colors.grayLight,
+    borderWidth: 1,
+    borderRadius: 5,
   },
   input: {
     fontSize: 20,
   },
-  label: { fontSize: 15, marginBottom: 5 },
+  label: { fontSize: 15, marginBottom: 5, color: Colors.gray },
+  error: {
+    color: Colors.danger,
+  },
 });

@@ -8,13 +8,21 @@ import {
 } from "react-native";
 import { useRouter, useGlobalSearchParams } from "expo-router";
 import { BookDetail } from "@/components/organisms/BookDetail";
-import { useGetBookAdapter } from "@/adapters/useBooksAdapter";
+import {
+  useGetBookAdapter,
+  useGetBooksAdapter,
+} from "@/adapters/useBooksAdapter";
 
 export default function BookDetailPage() {
   const param = useGlobalSearchParams();
   const id = param.id as string;
 
-  const { book, isFetching } = useGetBookAdapter(id);
+  // No need to fetching detail separately, since in our implementation book list provides all details
+  // and is also cached
+  // const { book, isFetching } = useGetBookAdapter(id);
+  const { books, isFetching } = useGetBooksAdapter();
+
+  const book = books.find((book) => book._id === id);
 
   if (isFetching) {
     return (
@@ -42,8 +50,7 @@ export default function BookDetailPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    padding: 8,
   },
   title: {
     fontSize: 20,

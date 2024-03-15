@@ -53,6 +53,7 @@ export function BooksList({
         refreshControl={
           <RefreshControl refreshing={isFetching} onRefresh={onRefresh} />
         }
+        initialNumToRender={4}
         data={filteredBooks}
         contentContainerStyle={{ gap: 12, justifyContent: "center" }}
         keyExtractor={(item) => item._id}

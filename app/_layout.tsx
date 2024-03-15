@@ -5,6 +5,7 @@ import * as SplashScreen from "expo-splash-screen";
 import React, { useEffect } from "react";
 import { QueryClientProvider } from "@/infrastructure/QueryClientProvider";
 import { loadStorage } from "@/utils/storage";
+import { StatusBar } from "expo-status-bar";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -55,7 +56,14 @@ function RootLayoutNav() {
 
   return (
     <QueryClientProvider>
-      <Stack>
+      <StatusBar style="dark" />
+      <Stack
+        screenOptions={{
+          contentStyle: {
+            backgroundColor: "#fff",
+          },
+        }}
+      >
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="hashSetup" options={{ headerBackVisible: false }} />
         <Stack.Screen

@@ -36,6 +36,7 @@ export const SearchBar = ({
           onBlur={() => {
             setClicked(false);
           }}
+          style={styles.searchInput}
         />
         {clicked && (
           <Entypo
@@ -69,5 +70,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#d9dbda",
     borderRadius: 15,
     alignItems: "center",
+  },
+  searchInput: {
+    borderWidth: 0,
   },
 });

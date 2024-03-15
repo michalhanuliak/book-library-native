@@ -1,4 +1,4 @@
-import { Book, BookCreateData } from "@/domain";
+import { BookCreateData } from "@/domain";
 import { faker } from "@faker-js/faker";
 
 export const generateBookMocks = (entriesCount: number): BookCreateData[] => {
@@ -11,7 +11,7 @@ export const generateBookMocks = (entriesCount: number): BookCreateData[] => {
       description: faker.lorem.paragraph(),
       coverImageUrl: faker.image.url(),
       pageCount: faker.number.int({ min: 100, max: 1000 }),
-      rating: parseFloat(faker.number.float({ min: 1, max: 5 }).toFixed(1)),
+      rating: parseFloat(faker.number.int({ min: 1, max: 5 }).toFixed(1)),
     };
     books.push(book);
   }

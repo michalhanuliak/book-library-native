@@ -24,13 +24,13 @@ export function useGetBookAdapter(id: string) {
 }
 
 export function useCreateBookAdapter() {
-  const { mutate, error } = useCreateBookMutation();
+  const { mutate, error, isPending } = useCreateBookMutation();
 
   const createBook = async (book: BookCreateData) => {
     mutate(book);
   };
 
-  return { createBook, error };
+  return { createBook, error, isPending };
 }
 
 export function useEditBookAdapter(id: string) {
@@ -43,7 +43,7 @@ export function useEditBookAdapter(id: string) {
       const previousBooks = queryClient.getQueryData<Book[]>(queryKey);
 
       if (!previousBooks) {
-        return;
+        return [];
       }
 
       const bookIndex = previousBooks.findIndex((book) => book._id === id);
